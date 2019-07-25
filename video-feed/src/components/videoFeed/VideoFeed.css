@@ -1,0 +1,11 @@
+.VideoFeed {
+  background-image: url("../../assets/img/dots.png");
+  background-size: contain;
+  background-color: #1c1e45;
+  color: white;
+
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+}
