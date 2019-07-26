@@ -4,8 +4,10 @@
   background-color: #1c1e45;
   color: white;
 
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
 }
