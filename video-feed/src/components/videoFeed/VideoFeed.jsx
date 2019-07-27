@@ -1,14 +1,17 @@
 import React from "react";
-import VideoCard from "../videoCard/VideoCard";
-
-import videos from "../../assets/videos/videos";
 import "./VideoFeed.css";
+import axios from "axios";
+
+import VideoCard from "../videoCard/VideoCard";
+import VideoNavBar from "../videoNavBar/VideoNavBar";
 
 class VideoFeed extends React.Component {
   state = {
-    videos,
+    videos: [],
     mappedVideos: [],
     videoIndex: 0,
+    videosPerLoad: 5,
+    toggleDropDown: false,
     globalVideoOpts: {
       autoplay: true,
       loop: true,
@@ -20,17 +23,32 @@ class VideoFeed extends React.Component {
   };
 
   componentDidMount() {
-    this.getNextFiveVids(this.state.videos);
+    this.getAllVideos();
+    window.addEventListener("scroll", this.handleScroll);
+    setTimeout(() => window.scrollTo(0, 0), 1000);
   }
 
-  //Function to get next 5 videos from source when scrolling
-  getNextFiveVids = videoData => {
-    this.setState(prevState => {
-      let nextFiveVideos = videoData.slice(this.state.videoIndex, 5);
-      let tempMappedVids = [...prevState.mappedVideos];
-      tempMappedVids.push(nextFiveVideos.map(this.mapVideos));
-      return { mappedVideos: tempMappedVids };
-    });
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  //I'm doing a basic Axios get call to the local videos file to show a more realistic way of getting data (instead of just importing it).
+  //I also typically prefer to define all of my calls in a separate services file.
+  getAllVideos = () => {
+    axios
+      .get("videos.json")
+      .then(this.onVideosGetSuccess)
+      .then(this.getNextVids)
+      .catch(this.onVideosGetError);
+  };
+
+  onVideosGetSuccess = data => {
+    console.log("Successfully got video data.");
+    this.setState({ videos: data.data });
+  };
+
+  onVideosGetError = () => {
+    console.log("There was an error retrieving video data.");
   };
 
   mapVideos = videoClip => {
@@ -43,8 +61,74 @@ class VideoFeed extends React.Component {
     );
   };
 
+  //Function to get next few videos when scrolling
+  getNextVids = () => {
+    if (
+      this.state.mappedVideos.length <=
+      this.state.videos.length - this.state.videosPerLoad
+    ) {
+      this.setState(prevState => {
+        let videosCopy = [...prevState.videos];
+        let nextVideos = videosCopy.splice(
+          prevState.videoIndex,
+          prevState.videosPerLoad
+        );
+
+        let updatedState = { ...prevState };
+        updatedState.mappedVideos = updatedState.mappedVideos.concat(
+          nextVideos.map(this.mapVideos)
+        );
+
+        updatedState.videoIndex += updatedState.videosPerLoad;
+
+        return updatedState;
+      });
+    }
+  };
+
+  //Debouncing to limit rate of on scroll events
+  scrollDebounce = (callback, wait) => {
+    let timeout = null;
+    return (...args) => {
+      const next = () => callback(...args);
+      clearTimeout(timeout);
+      timeout = setTimeout(next, wait);
+    };
+  };
+
+  handleScroll = this.scrollDebounce(e => {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.getElementById("root").offsetHeight - 200
+    ) {
+      this.getNextVids();
+    }
+  }, 100);
+
+  dropDownFadeIn = () => {
+    this.setState({ toggleDropDown: true });
+  };
+
+  dropDownFadeOut = () => {
+    this.setState({ toggleDropDown: false });
+  };
+
   render() {
-    return <div className="VideoFeed">{this.state.mappedVideos}</div>;
+    return (
+      <React.Fragment>
+        <VideoNavBar
+          showDropDown={this.state.toggleDropDown}
+          fadeIn={this.dropDownFadeIn}
+          fadeOut={this.dropDownFadeOut}
+        />
+        <div className="VideoFeed">
+          {this.state.mappedVideos}
+          <button type="button" onClick={this.getNextVids}>
+            Load More
+          </button>
+        </div>
+      </React.Fragment>
+    );
   }
 }
 

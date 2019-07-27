@@ -1,21 +1,29 @@
 .videocard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  max-width: 70%;
+  max-width: 70vw;
   border-radius: 5px;
-  background-color: #344675;
+
+  background-image: linear-gradient(180deg, #ff9e2e 0%, #100e17 85%);
   margin: 10px;
   font-family: Poppins, sans-serif;
+  padding: 0.25rem;
 }
 
 .videocard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.003);
 }
 
 img {
   border-radius: 5px 5px 0 0;
 }
 
-.container {
+/* .container {
   padding: 2px 16px;
+} */
+
+.card-info {
+  min-height: 50;
+  position: relative;
 }
