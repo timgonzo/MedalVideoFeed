@@ -7,23 +7,118 @@
   background-image: linear-gradient(180deg, #ff9e2e 0%, #100e17 85%);
   margin: 10px;
   font-family: Poppins, sans-serif;
-  padding: 0.25rem;
+  padding: 0.2em;
 }
 
 .videocard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  transform: scale(1.003);
+  transform: scale(1.005);
 }
 
-img {
-  border-radius: 5px 5px 0 0;
+.video {
+  margin-bottom: 5px;
 }
 
-/* .container {
-  padding: 2px 16px;
-} */
+.card-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  justify-content: space-evenly;
+}
 
-.card-info {
-  min-height: 50;
-  position: relative;
+.clip-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin: 0.5em;
+}
+
+.clip-info-sub-col {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.clip-info-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.clip-title {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.clip-post-info {
+  font-style: italic;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.clip-social-info {
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.user-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-pic {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  font-size: 1.5em;
+}
+
+.rounded {
+  border-radius: 10%;
+  max-width: 70%;
+  display: block;
 }

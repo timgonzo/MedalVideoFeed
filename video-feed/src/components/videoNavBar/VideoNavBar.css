@@ -36,7 +36,7 @@
 
 .nav-logo:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  transform: scale(1.01);
+  transform: scale(1.005);
 }
 
 .fixed-top {

@@ -6,6 +6,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("./assets/img/dots.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-color: #12132c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 code {

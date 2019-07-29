@@ -64,8 +64,10 @@ class VideoFeed extends React.Component {
   //Function to get next few videos when scrolling
   getNextVids = () => {
     if (
-      this.state.mappedVideos.length <=
-      this.state.videos.length - this.state.videosPerLoad
+      this.state.videoIndex < this.state.videos.length
+
+      // this.state.mappedVideos.length <=
+      // this.state.videos.length - this.state.videosPerLoad
     ) {
       this.setState(prevState => {
         let videosCopy = [...prevState.videos];
@@ -105,28 +107,52 @@ class VideoFeed extends React.Component {
     }
   }, 100);
 
-  dropDownFadeIn = () => {
+  //NavBar UI functions
+  showDropDown = () => {
     this.setState({ toggleDropDown: true });
   };
 
-  dropDownFadeOut = () => {
+  hideDropDown = () => {
     this.setState({ toggleDropDown: false });
+  };
+
+  toggleAutoPlay = () => {
+    this.setState(prevState => {
+      let updatedVideoOpts = { ...prevState.globalVideoOpts };
+      updatedVideoOpts.autoplay = !prevState.globalVideoOpts.autoplay;
+      return { globalVideoOpts: updatedVideoOpts };
+    });
+  };
+
+  toggleAutoLoop = () => {
+    this.setState(prevState => {
+      let updatedVideoOpts = { ...prevState.globalVideoOpts };
+      updatedVideoOpts.loop = !prevState.globalVideoOpts.loop;
+      return { globalVideoOpts: updatedVideoOpts };
+    });
+  };
+
+  toggleMute = () => {
+    this.setState(prevState => {
+      let updatedVideoOpts = { ...prevState.globalVideoOpts };
+      updatedVideoOpts.muted = !prevState.globalVideoOpts.muted;
+      return { globalVideoOpts: updatedVideoOpts };
+    });
   };
 
   render() {
     return (
       <React.Fragment>
         <VideoNavBar
-          showDropDown={this.state.toggleDropDown}
-          fadeIn={this.dropDownFadeIn}
-          fadeOut={this.dropDownFadeOut}
+          toggleDropDown={this.state.toggleDropDown}
+          fadeIn={this.showDropDown}
+          fadeOut={this.hideDropDown}
+          globalVideoOpts={this.state.globalVideoOpts}
+          toggleAutoPlay={this.toggleAutoPlay}
+          toggleAutoLoop={this.toggleAutoLoop}
+          toggleMute={this.toggleMute}
         />
-        <div className="VideoFeed">
-          {this.state.mappedVideos}
-          <button type="button" onClick={this.getNextVids}>
-            Load More
-          </button>
-        </div>
+        <div className="VideoFeed">{this.state.mappedVideos}</div>
       </React.Fragment>
     );
   }

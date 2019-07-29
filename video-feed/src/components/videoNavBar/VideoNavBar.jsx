@@ -7,72 +7,96 @@ const VideoNavBar = props => {
   return (
     <div className="fixed-top">
       <nav class="navbar">
-        <img src={logo} alt="Medal.TV Logo" className="nav-logo" />
+        <img
+          src={logo}
+          alt="Medal.TV Logo"
+          className="nav-logo"
+          onClick={() => window.open("https://medal.tv/")}
+        />
         <div className="main-nav" id="js-menu">
           <div className="navbar-toggle" onMouseLeave={() => props.fadeOut()}>
             <p className="settings-header" onMouseOver={() => props.fadeIn()}>
               Global Video Settings{" "}
               <i className="tim-icons icon-settings-gear-63 icons" />
             </p>
-            {props.showDropDown ? (
+            {/*If drop-down visiblity prop is true, fade to visible element*/}
+            {props.toggleDropDown ? (
               <div
                 className="dropdown-content fade-in"
                 onMouseLeave={() => props.fadeOut()}
               >
-                <p className="control-buttons">
-                  Play <i className="tim-icons icon-triangle-right-17 icons" />
-                </p>
-                <p className="control-buttons">
-                  Pause <i className="tim-icons icon-button-pause icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Auto-Loop{" "}
-                  <i className="tim-icons icon-refresh-02 icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Volume <i className="tim-icons icon-volume-98 icons" />
-                </p>
+                {props.globalVideoOpts.autoplay ? (
+                  <p className="control-buttons" onClick={props.toggleAutoPlay}>
+                    Auto-Play: On{" "}
+                    <i className="tim-icons icon-triangle-right-17 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleAutoPlay}>
+                    Auto-Play: Off{" "}
+                    <i className="tim-icons icon-button-pause icons" />
+                  </p>
+                )}
+                {props.globalVideoOpts.loop ? (
+                  <p className="control-buttons" onClick={props.toggleAutoLoop}>
+                    Auto-Loop: On{" "}
+                    <i className="tim-icons icon-refresh-02 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleAutoLoop}>
+                    Auto-Loop: Off{" "}
+                    <i className="tim-icons icon-refresh-02 icons" />
+                  </p>
+                )}
+
+                {props.globalVideoOpts.muted ? (
+                  <p className="control-buttons" onClick={props.toggleMute}>
+                    Mute On <i className="tim-icons icon-volume-98 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleMute}>
+                    Mute Off <i className="tim-icons icon-volume-98 icons" />
+                  </p>
+                )}
               </div>
             ) : (
               <div
                 className="dropdown-content fade-out"
                 onMouseLeave={() => props.fadeOut()}
               >
-                <p className="control-buttons">
-                  Play <i className="tim-icons icon-triangle-right-17 icons" />
-                </p>
-                <p className="control-buttons">
-                  Pause <i className="tim-icons icon-button-pause icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Auto-Loop{" "}
-                  <i className="tim-icons icon-refresh-02 icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Volume <i className="tim-icons icon-volume-98 icons" />
-                </p>
+                {props.globalVideoOpts.autoplay ? (
+                  <p className="control-buttons" onClick={props.toggleAutoPlay}>
+                    Auto-Play: On{" "}
+                    <i className="tim-icons icon-triangle-right-17 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleAutoPlay}>
+                    Auto-Play: Off{" "}
+                    <i className="tim-icons icon-button-pause icons" />
+                  </p>
+                )}
+                {props.globalVideoOpts.loop ? (
+                  <p className="control-buttons" onClick={props.toggleAutoLoop}>
+                    Auto-Loop: On{" "}
+                    <i className="tim-icons icon-refresh-02 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleAutoLoop}>
+                    Auto-Loop: Off{" "}
+                    <i className="tim-icons icon-refresh-02 icons" />
+                  </p>
+                )}
+
+                {props.globalVideoOpts.muted ? (
+                  <p className="control-buttons" onClick={props.toggleMute}>
+                    Mute On <i className="tim-icons icon-volume-98 icons" />
+                  </p>
+                ) : (
+                  <p className="control-buttons" onClick={props.toggleMute}>
+                    Mute Off <i className="tim-icons icon-volume-98 icons" />
+                  </p>
+                )}
               </div>
             )}
-            {props.showDropDown ? (
-              <div
-                className="dropdown-content fade-out"
-                onMouseLeave={() => props.fadeOut()}
-              >
-                <p className="control-buttons">
-                  Play <i className="tim-icons icon-triangle-right-17 icons" />
-                </p>
-                <p className="control-buttons">
-                  Pause <i className="tim-icons icon-button-pause icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Auto-Loop{" "}
-                  <i className="tim-icons icon-refresh-02 icons" />
-                </p>
-                <p className="control-buttons">
-                  Toggle Volume <i className="tim-icons icon-volume-98 icons" />
-                </p>
-              </div>
-            ) : null}
           </div>
         </div>
       </nav>
