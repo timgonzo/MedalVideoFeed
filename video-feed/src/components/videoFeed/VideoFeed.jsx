@@ -11,7 +11,7 @@ class VideoFeed extends React.Component {
     mappedVideos: [],
     videoIndex: 0,
     videosPerLoad: 5,
-    toggleDropDown: false,
+    isDropDownVisible: false,
     globalVideoOpts: {
       autoplay: true,
       loop: true,
@@ -63,12 +63,7 @@ class VideoFeed extends React.Component {
 
   //Function to get next few videos when scrolling
   getNextVids = () => {
-    if (
-      this.state.videoIndex < this.state.videos.length
-
-      // this.state.mappedVideos.length <=
-      // this.state.videos.length - this.state.videosPerLoad
-    ) {
+    if (this.state.videoIndex < this.state.videos.length) {
       this.setState(prevState => {
         let videosCopy = [...prevState.videos];
         let nextVideos = videosCopy.splice(
@@ -108,14 +103,16 @@ class VideoFeed extends React.Component {
   }, 100);
 
   //NavBar UI functions
-  showDropDown = () => {
-    this.setState({ toggleDropDown: true });
+  fadeDropDownIn = () => {
+    this.setState({ isDropDownVisible: true });
   };
 
-  hideDropDown = () => {
-    this.setState({ toggleDropDown: false });
+  fadeDropDownOut = () => {
+    this.setState({ isDropDownVisible: false });
   };
 
+  //I was intending to create a global video option menu with the functions below but found that even if these props were passed down to the video, the video's state was unchanged.
+  //A change to the video player's code would be necessary to implement this functionality.
   toggleAutoPlay = () => {
     this.setState(prevState => {
       let updatedVideoOpts = { ...prevState.globalVideoOpts };
@@ -144,9 +141,9 @@ class VideoFeed extends React.Component {
     return (
       <React.Fragment>
         <VideoNavBar
-          toggleDropDown={this.state.toggleDropDown}
-          fadeIn={this.showDropDown}
-          fadeOut={this.hideDropDown}
+          isDropDownVisible={this.state.isDropDownVisible}
+          fadeIn={this.fadeDropDownIn}
+          fadeOut={this.fadeDropDownOut}
           globalVideoOpts={this.state.globalVideoOpts}
           toggleAutoPlay={this.toggleAutoPlay}
           toggleAutoLoop={this.toggleAutoLoop}

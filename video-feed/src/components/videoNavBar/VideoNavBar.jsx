@@ -20,7 +20,7 @@ const VideoNavBar = props => {
               <i className="tim-icons icon-settings-gear-63 icons" />
             </p>
             {/*If drop-down visiblity prop is true, fade to visible element*/}
-            {props.toggleDropDown ? (
+            {props.isDropDownVisible ? (
               <div
                 className="dropdown-content fade-in"
                 onMouseLeave={() => props.fadeOut()}

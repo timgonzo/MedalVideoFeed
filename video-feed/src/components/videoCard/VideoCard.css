@@ -1,7 +1,7 @@
 .videocard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  max-width: 70vw;
+  max-width: 85vw;
   border-radius: 5px;
 
   background-image: linear-gradient(180deg, #ff9e2e 0%, #100e17 85%);
@@ -121,4 +121,23 @@
   border-radius: 10%;
   max-width: 70%;
   display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .clip-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .clip-post-info {
+    font-size: 0.9em;
+  }
+
+  .clip-social-info {
+    font-size: 1.5em;
+  }
+
+  .user-text {
+    font-size: 1.25em;
+  }
 }
