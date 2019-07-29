@@ -18,7 +18,8 @@ class VideoFeed extends React.Component {
       muted: true,
       controls: true,
       embedded: true,
-      retry: true
+      retry: true,
+      quality: "high"
     }
   };
 
