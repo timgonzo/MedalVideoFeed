@@ -22,7 +22,7 @@ const VideoNavBar = props => {
             {/*If drop-down visiblity prop is true, fade to visible element*/}
             {props.isDropDownVisible ? (
               <div
-                className="dropdown-content fade-in"
+                className="dropdown-content fade-in rounded"
                 onMouseLeave={() => props.fadeOut()}
               >
                 {props.globalVideoOpts.autoplay ? (
@@ -60,7 +60,7 @@ const VideoNavBar = props => {
               </div>
             ) : (
               <div
-                className="dropdown-content fade-out"
+                className="dropdown-content fade-out rounded"
                 onMouseLeave={() => props.fadeOut()}
               >
                 {props.globalVideoOpts.autoplay ? (
