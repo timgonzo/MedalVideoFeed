@@ -13,5 +13,5 @@ This is a video feed I developed in about a day for MedalTV to demonstrate my UI
 - The app server must be able to be ran using this command:
   `npm install && npm run start`
   
-### Bugs
+### Issues
 - Although the UI provides the user with global video settings, the proprietary video player only changes video settings upon receiving initial props. After initial render, videos must be controlled via the individual video component. A change to the video player's code is necessary to reflect property changes on every video component.
